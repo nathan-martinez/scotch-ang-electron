@@ -75,5 +75,15 @@
             });
             return deferred.promise;
         }
+
+        function updateCustomer(customer){
+            var deferred = $q.defer();
+            var query = "UPDATE customers SET name = ? WHERE customer_id = ?";
+            connection.query(query, [customer.name, customer.customer_id], function(err, res){
+                if (err) deferred.reject(err);
+                deferred.resolve(res);
+            });
+            return deferred.promise;
+        }
     }
 })();
